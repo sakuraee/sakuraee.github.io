@@ -229,6 +229,502 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/24/SOME/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/24/SOME/" itemprop="url">SOME</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-24T14:42:12+08:00">
+                2022-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="在输入URL执行的全部过程"><a href="#在输入URL执行的全部过程" class="headerlink" title="在输入URL执行的全部过程"></a>在输入URL执行的全部过程</h2><ul>
+<li><strong>域名解析</strong></li>
+<li><strong>为了将消息从你的PC上传到服务器上.需要用到IP协议、ARP协议和OSPF协议</strong></li>
+</ul>
+<p><strong>要查询一个url的ip地址</strong></p>
+<p>浏览器搜索自己的DNS缓存（维护一张域名与IP地址的对应表）</p>
+<p>若没有，则搜索操作系统中的DNS缓存（维护一张域名与IP地址的对应表）</p>
+<p>若没有，则搜索操作系统的hosts文件（Windows环境下，维护一张域名与IP地址的对应表，位置一般在 C:\Windows\System32\drivers\etc\hosts）</p>
+<p>若没有，则操作系统将域名发送至 本地域名服务器- -（递归查询方式），本地域名服务器 查询自己的DNS缓存，查找成功则返回结果，否则，（以下是迭代查询方式）</p>
+<p>4.1 本地域名服务器 向根域名服务器（其虽然没有每个域名的具体信息，但存储了负责每个域，如com、net、org等的解析的顶级域名服务器的地址）发起请求，此处，根域名服务器返回com域的顶级域名服务器的地址</p>
+<p>4.2 本地域名服务器 向com域的顶级域名服务器发起请求，返回baidu.com权限域名服务器（权限域名服务器，用来保存该区中的所有主机域名到IP地址的映射）地址</p>
+<p>4.3 本地域名服务器 向baidu.com权限域名服务器发起请求，得到<a target="_blank" rel="noopener" href="http://www.baidu.com的ip地址/">www.baidu.com的IP地址</a></p>
+<p>本地域名服务器 将得到的IP地址返回给操作系统，同时自己也将IP地址缓存起来</p>
+<p>操作系统将 IP 地址返回给浏览器，同时自己也将IP地址缓存起来</p>
+<p>至此，浏览器已经得到了域名对应的IP地址</p>
+<p><strong>ARP协议</strong></p>
+<p>地址解析协议，即ARP（Address Resolution Protocol），是根据IP地址获取物理地址的一个TCP/IP协议。主机发送信息时将包含目标IP地址的ARP请求广播到局域网络上的所有主机，并接收返回消息，以此确定目标的物理地址；收到返回消息后将该IP地址和物理地址存入本机ARP缓存中并保留一定时间，下次请求时直接查询ARP缓存以节约资源。</p>
+<p><strong>ARP欺骗</strong></p>
+<p>地址解析协议是建立在网络中各个主机互相信任的基础上的，局域网络上的主机可以自主发送ARP应答消息，其他主机收到应答报文时不会检测该报文的真实性就会将其记入本机ARP缓存；由此攻击者就可以向某一主机发送伪ARP应答报文，使其发送的信息无法到达预期的主机或到达错误的主机，这就构成了一个ARP欺骗</p>
+<p><strong>OSPF协议</strong></p>
+<ul>
+<li><strong>发起TCP的3次握手</strong></li>
+</ul>
+<p>TCP服务器进程先创建传输控制块TCB，时刻准备接受客户进程的连接请求，此时服务器就进入了LISTEN（监听）状态</p>
+<p>TCP客户进程也是先创建传输控制块TCB，然后向服务器发出连接请求报文，这是报文首部中的同部位SYN=1，同时选择一个初始序列号 seq=x ，此时，TCP客户端进程进入了 SYN-SENT（同步已发送状态）状态。TCP规定，SYN报文段（SYN=1的报文段）不能携带数据，但需要消耗掉一个序号。</p>
+<p>TCP服务器收到请求报文后，如果同意连接，则发出确认报文。确认报文中应该 ACK=1，SYN=1，确认号是ack=x+1，同时也要为自己初始化一个序列号 seq=y，此时，TCP服务器进程进入了SYN-RCVD（同步收到）状态。这个报文也不能携带数据，但是同样要消耗一个序号。</p>
+<p>TCP客户进程收到确认后，还要向服务器给出确认。确认报文的ACK=1，ack=y+1，自己的序列号seq=x+1，此时，TCP连接建立，客户端进入ESTABLISHED（已建立连接）状态。TCP规定，ACK报文段可以携带数据，但是如果不携带数据则不消耗序号。</p>
+<p>当服务器收到客户端的确认后也进入ESTABLISHED状态，此后双方就可以开始通信了。</p>
+<p><strong>为什么需要三次握手而不是两次</strong></p>
+<p>主要防止已经失效的连接请求报文突然又传送到了服务器，从而产生错误。</p>
+<p>客户端发送的连接请求报文可能因为堵塞而没有传到服务端，客户端便再次发送，服务端收到之后便开始连接传输，但是一段时间之后客户端的那一条请求连接的报文又到达了服务端，如果只握手两次的话那么服务端便会开始和客户端请求连接但是客户端由于没有发送请求了便不予理会导致服务端资源大量浪费。</p>
+<p>而如果是三次握手的话，那么这一条失效的连接请求就算服务端收到了，向客户端发送连接请求但是客户端不予回复应答那么也不会建立连接不会导致资源的浪费。</p>
+<p><strong>四次挥手</strong></p>
+<p>数据传输完毕后，双方都可释放连接。最开始的时候，客户端和服务器都是处于ESTABLISHED状态，然后客户端主动关闭，服务器被动关闭。</p>
+<ul>
+<li><strong>建立TCP连接后发起http请求</strong></li>
+</ul>
+<ul>
+<li>服务器响应htp请求</li>
+<li>浏览器解析htm代码,并请求html代码中的资源(如js、css、图片等）</li>
+<li>断开TCP连接</li>
+<li>浏览器对页面进行渲染呈现给用户</li>
+</ul>
+<p><strong>HTTP各种响应码</strong></p>
+<p>1XX 信息</p>
+<table>
+<thead>
+<tr>
+<th>100 Continue</th>
+<th>服务器仅接收到部分请求，但是一旦服务器并没有拒绝该请求，客户端应该继续发送其余的请求。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>101 Switching Protocols</td>
+<td>服务器转换协议：服务器将遵从客户的请求转换到另外一种协议。</td>
+</tr>
+<tr>
+<td>103 Checkpoint</td>
+<td>用于 PUT 或者 POST 请求恢复失败时的恢复请求建议。</td>
+</tr>
+</tbody></table>
+<p>2XX  成功</p>
+<table>
+<thead>
+<tr>
+<th>200 OK</th>
+<th>请求成功（这是对HTTP请求成功的标准应答。）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>201 Created</td>
+<td>请求被创建完成，同时新的资源被创建。</td>
+</tr>
+<tr>
+<td>202 Accepted</td>
+<td>供处理的请求已被接受，但是处理未完成。</td>
+</tr>
+<tr>
+<td>203 Non-Authoritative Information</td>
+<td>请求已经被成功处理，但是一些应答头可能不正确，因为使用的是其他文档的拷贝。</td>
+</tr>
+<tr>
+<td>204 No Content</td>
+<td>请求已经被成功处理，但是没有返回新文档。浏览器应该继续显示原来的文档。如果用户定期地刷新页面，而Servlet可以确定用户文档足够新，这个状态代码是很有用的。</td>
+</tr>
+<tr>
+<td>205 Reset Content</td>
+<td>请求已经被成功处理，但是没有返回新文档。但浏览器应该重置它所显示的内容。用来强制浏览器清除表单输入内容。</td>
+</tr>
+<tr>
+<td>206 Partial Content</td>
+<td>客户发送了一个带有Range头的GET请求，服务器完成了它。</td>
+</tr>
+</tbody></table>
+<p>3XX  重定向</p>
+<table>
+<thead>
+<tr>
+<th>300 Multiple Choices</th>
+<th>多重选择。链接列表。用户可以选择某链接到达目的地。最多允许五个地址。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>301 Moved Permanently</td>
+<td>所请求的页面已经转移至新的 URL 。</td>
+</tr>
+<tr>
+<td>302 Found</td>
+<td>所请求的页面已经临时转移至新的 URL 。</td>
+</tr>
+<tr>
+<td>303 See Other</td>
+<td>所请求的页面可在别的 URL 下被找到。</td>
+</tr>
+<tr>
+<td>304 Not Modified</td>
+<td>未按预期修改文档。客户端有缓冲的文档并发出了一个条件性的请求（一般是提供If-Modified-Since头表示客户只想比指定日期更新的文档）。服务器告诉客户，原来缓冲的文档还可以继续使用。</td>
+</tr>
+<tr>
+<td>305 Use Proxy</td>
+<td>客户请求的文档应该通过Location头所指明的代理服务器提取。</td>
+</tr>
+<tr>
+<td>306 Switch Proxy</td>
+<td><em>目前已不再使用，但是代码依然被保留。</em></td>
+</tr>
+<tr>
+<td>307 Temporary Redirect</td>
+<td>被请求的页面已经临时移至新的 URL 。</td>
+</tr>
+<tr>
+<td>308 Resume Incomplete</td>
+<td>用于 PUT 或者 POST 请求恢复失败时的恢复请求建议。</td>
+</tr>
+</tbody></table>
+<p>4XX  客户端错误</p>
+<table>
+<thead>
+<tr>
+<th>400 Bad Request</th>
+<th>因为语法错误，服务器未能理解请求。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>401 Unauthorized</td>
+<td>合法请求，但对被请求页面的访问被禁止。因为被请求的页面需要身份验证，客户端没有提供或者身份验证失败。</td>
+</tr>
+<tr>
+<td>402 Payment Required</td>
+<td><em>此代码尚无法使用。</em></td>
+</tr>
+<tr>
+<td>403 Forbidden</td>
+<td>合法请求，但对被请求页面的访问被禁止。</td>
+</tr>
+<tr>
+<td>404 Not Found</td>
+<td>服务器无法找到被请求的页面。</td>
+</tr>
+<tr>
+<td>405 Method Not Allowed</td>
+<td>请求中指定的方法不被允许。</td>
+</tr>
+<tr>
+<td>406 Not Acceptable</td>
+<td>服务器生成的响应无法被客户端所接受。</td>
+</tr>
+<tr>
+<td>407 Proxy Authentication Required</td>
+<td>用户必须首先使用代理服务器进行验证，这样请求才会被处理。</td>
+</tr>
+<tr>
+<td>408 Request Timeout</td>
+<td>请求超出了服务器的等待时间。</td>
+</tr>
+<tr>
+<td>409 Conflict</td>
+<td>由于冲突，请求无法被完成。</td>
+</tr>
+<tr>
+<td>410 Gone</td>
+<td>被请求的页面不可用。</td>
+</tr>
+<tr>
+<td>411 Length Required</td>
+<td>“Content-Length” 未被定义。如果无此内容，服务器不会接受请求。</td>
+</tr>
+<tr>
+<td>412 Precondition Failed</td>
+<td>请求中的前提条件被服务器评估为失败。</td>
+</tr>
+<tr>
+<td>413 Request Entity Too Large</td>
+<td>由于所请求的实体太大，服务器不会接受请求。</td>
+</tr>
+<tr>
+<td>414 Request-URI Too Long</td>
+<td>由于 URL 太长，服务器不会接受请求。当 POST 请求被转换为带有很长的查询信息的 GET 请求时，就会发生这种情况。</td>
+</tr>
+<tr>
+<td>415 Unsupported Media Type</td>
+<td>由于媒介类型不被支持，服务器不会接受请求。</td>
+</tr>
+<tr>
+<td>416 Requested Range Not Satisfiable</td>
+<td>客户端请求部分文档，但是服务器不能提供被请求的部分。</td>
+</tr>
+<tr>
+<td>417 Expectation Failed</td>
+<td>服务器不能满足客户在请求中指定的请求头。</td>
+</tr>
+</tbody></table>
+<p>5XX  服务端错误</p>
+<table>
+<thead>
+<tr>
+<th>500 Internal Server Error</th>
+<th>请求未完成。服务器遇到不可预知的情况。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>501 Not Implemented</td>
+<td>请求未完成。服务器不支持所请求的功能，或者服务器无法完成请求。</td>
+</tr>
+<tr>
+<td>502 Bad Gateway</td>
+<td>请求未完成。服务器充当网关或者代理的角色时，从上游服务器收到一个无效的响应。</td>
+</tr>
+<tr>
+<td>503 Service Unavailable</td>
+<td>服务器当前不可用（过载或者当机）。</td>
+</tr>
+<tr>
+<td>504 Gateway Timeout</td>
+<td>网关超时。服务器充当网关或者代理的角色时，未能从上游服务器收到一个及时的响应。</td>
+</tr>
+<tr>
+<td>505 HTTP Version Not Supported</td>
+<td>服务器不支持请求中指明的HTTP协议版本。</td>
+</tr>
+<tr>
+<td>511 Network Authentication Required</td>
+<td>用户需要提供身份验证来获取网络访问入口。</td>
+</tr>
+</tbody></table>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/22/leetcode1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2022/03/22/leetcode1/" itemprop="url">leetcode1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-03-22T18:37:33+08:00">
+                2022-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="121-买卖股票的最佳时机"><a href="#121-买卖股票的最佳时机" class="headerlink" title="121. 买卖股票的最佳时机"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/">121. 买卖股票的最佳时机</a></h2><p>给定一个数组 prices ，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。</p>
+<p>你只能选择 某一天 买入这只股票，并选择在 未来的某一个不同的日子 卖出该股票。设计一个算法来计算你所能获取的最大利润。</p>
+<p>返回你可以从这笔交易中获取的最大利润。如果你不能获取任何利润，返回 0 。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入：[7,1,5,3,6,4]</span><br><span class="line">输出：5</span><br><span class="line">解释：在第 2 天（股票价格 = 1）的时候买入，在第 5 天（股票价格 = 6）的时候卖出，最大利润 = 6-1 = 5 。</span><br><span class="line">注意利润不能是 7-1 = 6, 因为卖出价格需要大于买入价格；同时，你不能在买入前卖出股票。</span><br></pre></td></tr></table></figure>
+
+<p>遍历数组，一直更新其最小值，一直更新利润即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxProfit(vector&lt;int&gt;&amp; prices) &#123;</span><br><span class="line">        int ans=0;</span><br><span class="line">        int temp=prices[0];</span><br><span class="line">        for(int i=1;i&lt;prices.size();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            ans=max(prices[i]-temp,ans);</span><br><span class="line">            if(prices[i]&lt;temp)temp=prices[i];</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="15-三数之和"><a href="#15-三数之和" class="headerlink" title="15. 三数之和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/3sum/">15. 三数之和</a></h2><p>给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有和为 0 且不重复的三元组。</p>
+<p>注意：答案中不可以包含重复的三元组。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：nums = [-1,0,1,2,-1,-4]</span><br><span class="line">输出：[[-1,-1,2],[-1,0,1]]</span><br></pre></td></tr></table></figure>
+
+<p>将整个数组排序之后开始依次枚举第一个数字，后两个通过双指针的方法一前一后进行遍历，后两数之和为负的第一个数即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        //首先进行排序</span><br><span class="line">        sort(nums.begin(),nums.end());</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; ans;</span><br><span class="line">        int n=nums.size();</span><br><span class="line">        if(n&lt;3)return ans;</span><br><span class="line">        for(int i=0;i&lt;n-2;i++)</span><br><span class="line">        &#123;   </span><br><span class="line">        	//如果遇见相同的数字就跳过</span><br><span class="line">            if (i &gt; 0 &amp;&amp; nums[i] == nums[i - 1]) &#123;</span><br><span class="line">                continue;</span><br><span class="line">            &#125;</span><br><span class="line">            int th=n-1;</span><br><span class="line">            int target=-nums[i];</span><br><span class="line">            for(int se=i+1;se&lt;n-1;se++)</span><br><span class="line">            &#123;</span><br><span class="line">            	//如果遇见相同的数字就跳过</span><br><span class="line">                if (se &gt; i+1 &amp;&amp; nums[se] == nums[se - 1]) &#123;</span><br><span class="line">                continue;</span><br><span class="line">                &#125;</span><br><span class="line">                //如果大于target就第三个数字向前，小于就第二个数字向后，得到救国便进行保存</span><br><span class="line">                while (se &lt; th &amp;&amp; nums[se] + nums[th] &gt; target) &#123;</span><br><span class="line">                    --th;</span><br><span class="line">                &#125;</span><br><span class="line">                if(th==se)break;</span><br><span class="line">                if (nums[se] + nums[th] == target) &#123;</span><br><span class="line">                    ans.push_back(&#123;nums[i], nums[se], nums[th]&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/15/LeetCodePratice/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -540,7 +1036,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
